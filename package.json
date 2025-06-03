@@ -1,0 +1,13 @@
+{
+  "name": "web-scraper",
+  "version": "1.0.0",
+  "description": "A web scraper that extracts text content and documents from a website.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "puppeteer": "^22.15.0",
+    "axios": "^1.7.2"
+  }
+}
