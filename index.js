@@ -62,8 +62,12 @@ async function downloadDocument(link) {
       responseType: 'arraybuffer',
       timeout: 30000
     });
-    
-    const filename = link.replace(/[^a-z0-9]/gi, '_').substring(0, 100);
+    // Extract file extension from link (default to .bin if not found)
+    let ext = path.extname(link.split('?')[0]).toLowerCase();
+    if (!ext || ext.length > 6) ext = '.bin';
+    // Use a safe filename with extension
+    const base = link.replace(/[^a-z0-9]/gi, '_').substring(0, 100);
+    const filename = base + ext;
     await fs.writeFile(path.join('scraped_content', filename), response.data);
     console.log(`Downloaded: ${filename}`);
   } catch (error) {
